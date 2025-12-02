@@ -26,3 +26,9 @@ export interface User {
     updatedAt: string,
     microsoftId?: string
 }
+
+interface AuthUser {
+    userId: string,
+    email: string,
+    role: 'user' | 'admin'
+}
