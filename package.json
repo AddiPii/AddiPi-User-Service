@@ -18,12 +18,14 @@
   },
   "homepage": "https://github.com/AddiPii/AddiPi-User-Service#readme",
   "dependencies": {
+    "@azure/cosmos": "^4.9.0",
     "cors": "^2.8.5",
     "express": "^5.2.1",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.5",
+    "@types/azure": "^0.9.20",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^24.10.1"
