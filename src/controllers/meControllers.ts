@@ -5,11 +5,11 @@ import { User } from "../type"
 
 
 export const getCurrentUser = async (
-    req: Request & {user: AuthUser},
+    req: Request,
     res: Response<User | {error:string}>
 ): Promise<void | Response<{error: string}>> => {
     try {
-        const authUser: AuthUser = req.user
+        const authUser = (req as any).user
         const { resource: user } = await usersContainer.item(
             authUser.userId, authUser.userId).read<User>()
     
