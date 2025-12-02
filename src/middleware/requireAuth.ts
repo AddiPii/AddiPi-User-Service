@@ -4,7 +4,7 @@ import { Data, AuthUser } from "./mwTypes"
 
 
 const requireAuth = async (
-    req: Request<{}, unknown, {}, {}> & {user: AuthUser},
+    req: Request<{}, unknown, {}, {}>,
     res: Response<{error: string}>,
     next: NextFunction
 ): Promise<void | {error: string}> =>{
@@ -32,7 +32,7 @@ const requireAuth = async (
             throw new Error('Authentication failed')
         }
 
-        req.user = data.user
+        (req as any).user = data.user
 
         next()
     } catch (err) {
