@@ -1,8 +1,15 @@
-import { CONFIG } from '../config.js'
+import { CONFIG } from "../config/config"
+import type { Request, Response, NextFunction } from "express"
+import { Data } from "./mwTypes"
 
-const requireAuth = async (req, res, next) =>{
+
+const requireAuth = async (
+    req: Request<{}, unknown, {}, {}> & {user: string},
+    res: Response<{error: string}>,
+    next: NextFunction
+): Promise<void | {error: string}> =>{
     try {
-        const token = req.headers.authorization?.replace('Bearer ', '')
+        const token: string | undefined = req.headers.authorization?.replace('Bearer ', '')
 
         if (!token){
             console.log('no token')
@@ -10,15 +17,15 @@ const requireAuth = async (req, res, next) =>{
             return
         }
 
-        const response = await fetch(`${CONFIG.AUTH_SERVICE_URL}/auth/verify`, {
+        const response: globalThis.Response = await fetch(`${CONFIG.AUTH_SERVICE_URL}/auth/verify`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer${token}`,
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             }
         })
 
-        const data = await response.json()
+        const data: Data = await response.json() as Data
 
         if (!response.ok){
             console.log('response not ok')
