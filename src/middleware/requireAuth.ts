@@ -1,10 +1,10 @@
 import { CONFIG } from "../config/config"
 import type { Request, Response, NextFunction } from "express"
-import { Data, JWTPayload } from "./mwTypes"
+import { Data, AuthUser } from "./mwTypes"
 
 
 const requireAuth = async (
-    req: Request<{}, unknown, {}, {}> & {user: JWTPayload},
+    req: Request<{}, unknown, {}, {}> & {user: AuthUser},
     res: Response<{error: string}>,
     next: NextFunction
 ): Promise<void | {error: string}> =>{
