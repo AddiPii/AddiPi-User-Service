@@ -4,5 +4,18 @@
 		"name": "AddiPi-User-Service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
-	"item": []
+	"item": [
+		{
+			"name": "getCurrentUser",
+			"id": "43410429-b2abc6c8-3803-49fd-bf75-d64e41d2b110",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
 }
