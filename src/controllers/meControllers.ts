@@ -24,3 +24,11 @@ export const getCurrentUser = async (
         res.status(500).json({ error: 'Internal server error' })
     }
 }
+
+
+export const editCurrentUser = async (
+    req: Request,
+    res: Response
+) => {
+    
+}
