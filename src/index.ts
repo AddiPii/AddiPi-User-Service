@@ -19,7 +19,7 @@ app.use('/users/me', meRouter)
 
 app.use('/users', usersRouter)
 
-app.get('/health', (req: Request, res: Response<{ok: boolean}>) => {
+app.get('/health', (req: Request, res: Response<{ok: boolean}>): void => {
     res.json({ ok: true });
 });
 
