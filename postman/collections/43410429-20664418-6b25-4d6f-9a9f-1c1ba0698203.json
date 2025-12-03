@@ -42,7 +42,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "editCurrentUser",
 			"id": "43410429-dc600afe-8f33-4326-abf7-45cfa00dff7e",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
