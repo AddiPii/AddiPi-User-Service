@@ -6,52 +6,58 @@
 	},
 	"item": [
 		{
-			"name": "getCurrentUser",
-			"id": "43410429-b2abc6c8-3803-49fd-bf75-d64e41d2b110",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "getCurrentUserJobs",
-			"id": "43410429-2097f64f-a76a-4d24-8083-0b813ab77173",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "getStats",
-			"id": "43410429-72d01e0b-b41c-464e-b086-07628556cab6",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "editCurrentUser",
-			"id": "43410429-dc600afe-8f33-4326-abf7-45cfa00dff7e",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
+			"name": "me",
+			"item": [
+				{
+					"name": "getCurrentUser",
+					"id": "43410429-b2abc6c8-3803-49fd-bf75-d64e41d2b110",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getCurrentUserJobs",
+					"id": "43410429-2097f64f-a76a-4d24-8083-0b813ab77173",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getStats",
+					"id": "43410429-72d01e0b-b41c-464e-b086-07628556cab6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "editCurrentUser",
+					"id": "43410429-dc600afe-8f33-4326-abf7-45cfa00dff7e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
+			"id": "43410429-432d909b-3524-44ce-b73a-ba94e00a40aa"
 		}
 	]
 }
