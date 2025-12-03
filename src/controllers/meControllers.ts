@@ -1,6 +1,6 @@
 import type { Request, Response } from "express"
 import { AuthUser } from "../middleware/mwTypes"
-import { usersContainer } from "../services/containers"
+import { jobsContainer, usersContainer } from "../services/containers"
 import { User } from "../type"
 import getLocalISO from "../helpers/getLocalISO"
 
@@ -67,6 +67,48 @@ export const editCurrentUser = async (
         res.json(userWithoutPassword)
     } catch (err) {
         console.error('Update profile error:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
+
+export const getCurrentUserJobs = async (
+    req: Request<{}, unknown, {}, {limit: string, status: string, sort: string}>,
+    res: Response<{jobs: any, count:number} | {error: string}>
+): Promise<void | Response<{error: string}>> => {
+    try {
+        const  authUser: AuthUser = (req as any).user as AuthUser
+        const limit = Math.min(Math.max(
+            parseInt(req.query.limit as string || '50', 10), 1), 100)
+        const status = req.query.status
+        const sort = req.query.sort
+
+        let query = `SELECT * FROM c WHERE c.userId = @userId`
+        const parameters: Array<{ name: string, value: any }> = [
+            { name: '@userId', value: authUser.userId }
+        ]
+
+        if (status){
+            query += ` AND c.status = @status`
+            parameters.push({ name: '@status', value: status})
+        }
+
+        if (sort == 'created'){
+            query += ` ORDER BY c.createdAt DESC`
+        }
+        else{
+            query += ` ORDER BY c.scheduledAt DESC`
+        }
+
+        const { resources: jobs } = await jobsContainer.items.query({
+            query,
+            parameters
+        }, {maxItemCount: limit}).fetchAll()
+
+        res.json({ jobs, count: jobs.length })
+        
+    } catch (err) {
+        console.error('Get user jobs error:', err);
         res.status(500).json({ error: 'Internal server error' });
     }
 }

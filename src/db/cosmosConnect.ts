@@ -9,7 +9,7 @@ export function cosmosConnect(COSMOS_ENDPOINT: string, COSMOS_KEY: string): cont
         const comsosClient: CosmosClient = new CosmosClient({ endpoint: COSMOS_ENDPOINT, key: COSMOS_KEY })
         const database: Database = comsosClient.database('addipi')
         usersContainer = database.container('users')
-        jobsContainer = database.container('refresh-tokens')
+        jobsContainer = database.container('jobs')
     } catch (err) {
         console.error('Failed to create Cosmos DB client:', err);
         process.exit(1);
