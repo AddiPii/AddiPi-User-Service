@@ -1,6 +1,6 @@
 import express from 'express'
 import type { Router } from 'express'
-import { editCurrentUser, getCurrentUser, getCurrentUserJobs } from '../controllers/meControllers'
+import { editCurrentUser, getCurrentUser, getCurrentUserJobs, getStats } from '../controllers/meControllers'
 import requireAuth from '../middleware/requireAuth'
 
 
@@ -12,3 +12,5 @@ meRouter.get('/', requireAuth, getCurrentUser)
 meRouter.patch('/', requireAuth, editCurrentUser)
 
 meRouter.get('/jobs', requireAuth, getCurrentUserJobs)
+
+meRouter.get('/stats', requireAuth, getStats)
