@@ -10,6 +10,9 @@ export const getCurrentUser = async (
     res: Response<User | {error:string}>
 ): Promise<void | Response<{error: string}>> => {
     try {
+        if (!(req as any).user){
+            return res.status(401).json({error: 'Unauthorized'})
+        }
         const authUser = (req as any).user as AuthUser
         const { resource: user } = await usersContainer.item(
             authUser.userId, authUser.userId).read<User>()
@@ -32,6 +35,9 @@ export const editCurrentUser = async (
     res: Response<User | {error: string}>
 ): Promise<void | Response<{error: string}>> => {
     try {
+        if (!(req as any).user){
+            return res.status(401).json({error: 'Unauthorized'})
+        }
         const  authUser: AuthUser = (req as any).user as AuthUser
         const { firstName, lastName /*, password, confirmPassword */ } = req.body
     
@@ -77,6 +83,9 @@ export const getCurrentUserJobs = async (
     res: Response<{jobs: any, count:number} | {error: string}>
 ): Promise<void | Response<{error: string}>> => {
     try {
+        if (!(req as any).user){
+            return res.status(401).json({error: 'Unauthorized'})
+        }
         const  authUser: AuthUser = (req as any).user as AuthUser
         const limit = Math.min(Math.max(
             parseInt(req.query.limit as string || '50', 10), 1), 100)
@@ -109,6 +118,42 @@ export const getCurrentUserJobs = async (
         
     } catch (err) {
         console.error('Get user jobs error:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
+
+export const getStats = async (
+req: Request,
+res: Response<{stats: any} | {error: string}>
+): Promise<void | Response<{error: string}>> => {
+    try {
+        if (!(req as any).user){
+            return res.status(401).json({error: 'Unauthorized'})
+        }
+        const authUser: AuthUser = (req as any).user as AuthUser
+
+        const queries = {
+            total: `SELECT VALUE COUNT(1) FROM c WHERE c.userId = @userId`,
+            pending: `SELECT VALUE COUNT(1) FROM c WHERE c.userId = @userId AND c.status = 'pending'`,
+            scheduled: `SELECT VALUE COUNT(1) FROM c WHERE c.userId = @userId AND c.status = 'scheduled'`,
+            completed: `SELECT VALUE COUNT(1) FROM c WHERE c.userId = @userId AND c.status = 'completed'`,
+            failed: `SELECT VALUE COUNT(1) FROM c WHERE c.userId = @userId AND c.status = 'failed'`
+        }
+
+        const stats: any = {}
+
+        for (const [key, query] of Object.entries(queries)){
+            const { resources } = await jobsContainer.items.query({
+                query,
+                parameters: [{ name: '@userId', value: authUser.userId }]
+            }).fetchAll()
+            stats[key] = resources[0] || 0
+        }
+        
+        res.json(stats)
+    } catch (err) {
+        console.error('Get user stats error:', err);
         res.status(500).json({ error: 'Internal server error' });
     }
 }
