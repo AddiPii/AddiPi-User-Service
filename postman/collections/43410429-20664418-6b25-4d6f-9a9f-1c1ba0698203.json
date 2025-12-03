@@ -16,6 +16,18 @@
 				"header": []
 			},
 			"response": []
+		},
+		{
+			"name": "getCurrentUserJobs",
+			"id": "43410429-2097f64f-a76a-4d24-8083-0b813ab77173",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }
