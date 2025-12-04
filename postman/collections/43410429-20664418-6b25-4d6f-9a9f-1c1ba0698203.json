@@ -58,6 +58,24 @@
 				}
 			],
 			"id": "43410429-432d909b-3524-44ce-b73a-ba94e00a40aa"
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "New Request",
+					"id": "43410429-d421ad15-6e8e-48e2-8405-3ae884bf0c59",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
+			"id": "43410429-c0825be0-4f40-4ff8-b5ae-ff83623db5d9"
 		}
 	]
 }
