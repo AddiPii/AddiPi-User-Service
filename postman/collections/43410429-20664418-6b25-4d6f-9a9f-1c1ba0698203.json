@@ -155,7 +155,7 @@
 					"response": []
 				},
 				{
-					"name": "updateUserRole Copy",
+					"name": "updateUserRoleByParams",
 					"id": "43410429-a9b315af-8330-4f4a-bdb3-1228813b6f2e",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
