@@ -165,7 +165,7 @@ export const deleteUser = async (
 }
 
 export const getUserJobs = async (
-    req: Request,
+    req: Request<{ userId: string }, unknown, {}, { sort?: string, limit?: string}>,
     res: Response
 ): Promise<void | Response<{error: string}>> => {
     try {

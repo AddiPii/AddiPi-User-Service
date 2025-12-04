@@ -79,7 +79,7 @@ export const editCurrentUser = async (
 
 
 export const getCurrentUserJobs = async (
-    req: Request<{}, unknown, {}, {limit: string, status: string, sort: string}>,
+    req: Request<{}, unknown, {}, {limit?: string, status?: string, sort?: string}>,
     res: Response<{jobs: any, count:number} | {error: string}>
 ): Promise<void | Response<{error: string}>> => {
     try {

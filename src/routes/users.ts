@@ -17,4 +17,4 @@ usersRouter.patch('/:userId/role', requireAuth, requireAdmin, updateUserRole)
 
 usersRouter.delete('/:userId', requireAuth, requireAdmin, deleteUser)
 
-usersRouter.get('/:userId/jobs', getUserJobs)
+usersRouter.get('/:userId/jobs', requireAuth, requireAdmin, getUserJobs)
