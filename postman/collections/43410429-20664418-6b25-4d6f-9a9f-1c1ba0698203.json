@@ -113,7 +113,8 @@
 							"path": [
 								"user_1764603160153"
 							]
-						}
+						},
+						"description": "Get user by ID\n\nSummary  \nRetrieves a single user resource by its unique identifier.\n\nMethod  \nGET\n\nURL  \n{{user_url}}/user_1764603160153\n\nPath / Query Params\n\n- None. The request targets a concrete user resource by ID embedded in the path.\n    \n\nHeaders\n\n- Accept: application/json (recommended)\n    \n\nAuth\n\n- Inherit auth from parent or use the environment’s configured auth if applicable.\n    \n\nResponse\n\n- 200 OK: Returns the user record. Example body:\n    \n    ``` json\n    {\n    \"id\": \"user_1764603160153\",\n    \"email\": \"341479@uwr.edu.pl\",\n    \"firstName\": \"Oliwer\",\n    \"lastName\": \"Urbaniak\",\n    \"role\": \"admin\",\n    \"isVerified\": true,\n    \"createdAt\": \"2025-12-01T16:32:40,153Z\",\n    \"updatedAt\": \"2025-12-03T02:12:21,748Z\",\n    \"_rid\": \"…\",\n    \"_self\": \"…\",\n    \"_etag\": \"…\",\n    \"_attachments\": \"attachments/\",\n    \"_ts\": 1764724343\n    }\n    \n     ```\n    \n- 404 Not Found: User with the specified ID does not exist.\n    \n- 401/403: Authentication or authorization failed (if enforced by the service).\n    \n\nNotes\n\n- The base URL is provided by the environment variable {{user_url}}.\n    \n- This request currently has no pre-request or test scripts and no saved examples. Add tests or examples as needed for monitoring or mocking.\n    \n\nChangelog\n\n- Initial documentation added."
 					},
 					"response": []
 				}
