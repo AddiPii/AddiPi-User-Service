@@ -89,7 +89,8 @@
 									"value": "2"
 								}
 							]
-						}
+						},
+						"description": "Title: Get All Users\n\nOverview\nRetrieves a paginated, sortable list of users from the AddiPi User Service.\n\nRequest\n- Method: GET\n- URL: {{user_url}}/?sort=asc&limit=2\n\nQuery Parameters\n- sort (string, optional): Sort order for results. Allowed values: asc, desc. Default: asc.\n- limit (integer, optional): Max number of users to return. Examples: 2, 10, 50. Use 0 to return all (if supported by the service).\n\nAuthentication\n- Typically secured. If this service requires auth, use your existing workspace setup (e.g., Bearer token from AddiPi-Auth Service) via environment variables.\n- Example header when using Bearer token:\n  Authorization: Bearer {{access_token}}\n\nResponse\n- 200 OK (application/json)\n  Example body:\n  {\n    \"users\": [\n      {\n        \"id\": \"user_1764603160153\",\n        \"email\": \"341479@uwr.edu.pl\",\n        \"firstName\": \"Oliwer\",\n        \"lastName\": \"Urbaniak\",\n        \"role\": \"admin\",\n        \"isVerified\": true,\n        \"createdAt\": \"2025-12-01T16:32:40,153Z\",\n        \"updatedAt\": \"2025-12-04T02:29:31,215Z\"\n      }\n      // ...more users\n    ],\n    \"count\": 3\n  }\n\nError Responses (examples)\n- 401 Unauthorized: Missing or invalid credentials.\n- 403 Forbidden: Authenticated but not allowed to list users.\n- 500 Server Error: Unexpected server-side failure.\n\nNotes\n- This request currently has no pre-request or test scripts. Consider adding tests to assert status 200, validate schema of each user object, and check count matches array length.\n- Variables in use: {{user_url}} for base URL.\n\nChange Log\n- 2025-12-04: Initial documentation added."
 					},
 					"response": []
 				},
