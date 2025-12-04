@@ -15,4 +15,4 @@ usersRouter.patch('/:userId/role/:role', requireAuth, requireAdmin, updateUserRo
 
 usersRouter.patch('/:userId/role', requireAuth, requireAdmin, updateUserRole)
 
-usersRouter.delete('/:userId', deleteUser)
+usersRouter.delete('/:userId',requireAuth, deleteUser)

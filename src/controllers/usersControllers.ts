@@ -138,7 +138,16 @@ export const deleteUser = async (
                 return res.status(400).json({ error: 'Cannot delete your own account' })
             }
 
-            await usersContainer.item(userId, userId).delete()
+            const query = `SELECT * FROM c WHERE c.email = @email`
+            const parameters = [
+                { name: '@email', value: userId }
+            ] 
+            const { resources: user } = await usersContainer.items.query({
+                query,
+                parameters
+            }).fetchAll()
+
+            await usersContainer.item(user[0].id, user[0].id).delete()
         }
         else{
             if (userId === authUser.userId){
