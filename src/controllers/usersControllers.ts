@@ -60,6 +60,7 @@ export const getUserById = async (
     }
 }
 
+
 export const updateUserRole = async (
     req: Request<{userId: string}, unknown, {role: 'user' | 'admin'}, {}>,
     res: Response<{ error: string } | User>
@@ -120,4 +121,12 @@ export const updateUserRoleByParams = async (
         console.error('Update user role error ', err)
         res.status(500).json({ error: 'Internal server error' })
     }
+}
+
+
+export const deleteUser = async (
+    req: Request,
+    res: Response
+): Promise<void | Response<{error:string}>> => {
+    
 }
