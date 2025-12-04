@@ -36,3 +36,15 @@ export const getAllUsers = async (
         res.status(500).json({ error: 'Internal server error' })
     }
 }
+
+
+export const getUserById = async (
+    req: Request,
+    res: Response,
+): Promise<void | {error: string}> => {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
