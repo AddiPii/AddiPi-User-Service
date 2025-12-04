@@ -70,7 +70,26 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{user_url}}/?sort=asc&limit=2",
+							"host": [
+								"{{user_url}}"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "asc"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						}
 					},
 					"response": []
 				}
