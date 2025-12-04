@@ -53,8 +53,22 @@ export const getUserById = async (
         const { password, ...userWithoutPassword }: User = user
 
         res.json(userWithoutPassword)
-    } catch (error) {
-        console.error('Get specific user error ', error)
+    } catch (err) {
+        console.error('Get specific user error ', err)
+        res.status(500).json({ error: 'Internal server error' })
+    }
+}
+
+export const updateUserRole = async (
+    req: Request,
+    res: Response
+):Promise<void | Response<{error: string}>> => {
+    try {
+        const { userId } = req.params
+
+
+    } catch (err) {
+        console.error('Get specific user error ', err)
         res.status(500).json({ error: 'Internal server error' })
     }
 }
