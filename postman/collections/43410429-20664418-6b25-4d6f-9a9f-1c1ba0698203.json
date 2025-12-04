@@ -204,7 +204,8 @@
 							"path": [
 								"test2@uwr.edu.pl"
 							]
-						}
+						},
+						"description": "Deletes a user by email.\n\nSummary\n- Method: DELETE\n- URL: `{{user_url}}/test2@uwr.edu.pl`\n- Auth: Bearer token is required (set via the Authorization header).\n\nAuthorization\nEnsure a valid JWT Bearer token is present. In this workspace, tokens are typically stored in variables or set directly in the request’s Authorization header.\n\nPath parameter\n- email: The email identifier of the user to delete. In this example, the email is `test2@uwr.edu.pl`.\n\nResponses\n- 200 OK: User deleted successfully. Example response:\n```json\n{\"message\":\"User deleted successfully\"}\n```\n- 401 Unauthorized: Missing or invalid token.\n- 403 Forbidden: Insufficient permissions (requires admin role).\n- 404 Not Found: No user found for the provided email.\n\nNotes\n- This request uses the `{{user_url}}` environment/collection variable for the service base URL.\n- Deletion is permanent. Confirm the email before sending.\n\nExample cURL\n```bash\ncurl -X DELETE \"${user_url}/test2@uwr.edu.pl\" \\\n  -H \"Authorization: Bearer <your_jwt_token>\"\n```\n"
 					},
 					"response": []
 				}
