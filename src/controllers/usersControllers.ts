@@ -126,16 +126,31 @@ export const updateUserRoleByParams = async (
 
 
 export const deleteUser = async (
-    req: Request,
-    res: Response
+    req: Request<{ userId: string }>,
+    res: Response<{ error: string } | { message: string }>
 ): Promise<void | Response<{error:string}>> => {
-    const { userId } = req.params
-    const authUser = (req as any).user as AuthUser
+    try {
+        const { userId } = req.params
+        const authUser = (req as any).user as AuthUser
+        
+        if (userId.includes('@uwr.edu.pl')){
+            if (userId === authUser.email){
+                return res.status(400).json({ error: 'Cannot delete your own account' })
+            }
 
-    if (userId === authUser.userId){
-        return res.status(400).json({ error: 'Cannot delete your own account' })
+            await usersContainer.item(userId, userId).delete()
+        }
+        else{
+            if (userId === authUser.userId){
+                return res.status(400).json({ error: 'Cannot delete your own account' })
+            }
+        
+            await usersContainer.item(userId, userId).delete()
+        }
+        
+        res.json({ message: 'User deleted successfully' })
+    } catch (err) {
+        console.error('Delete user error ', err)
+        res.status(500).json({ error: 'Internal server error' })
     }
-
-    await usersContainer.item(userId, userId).delete()
-    res.json({ message: 'User deleted successfully' })
 }
