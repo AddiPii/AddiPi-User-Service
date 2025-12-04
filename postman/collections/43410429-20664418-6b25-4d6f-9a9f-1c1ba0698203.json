@@ -217,7 +217,18 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{user_url}}/341479@uwr.edu.pl/jobs",
+							"host": [
+								"{{user_url}}"
+							],
+							"path": [
+								"341479@uwr.edu.pl",
+								"jobs"
+							]
+						},
+						"description": "Purpose\nRetrieve the list of print jobs associated with a specific user email.\n\nRequest\nGET {{user_url}}/{{userEmail}}/jobs\n\nNote: This endpoint also supports an alternative path variant using a userId:\nGET {{user_url}}/users/{{userId}}/jobs\nwhere {{userId}} is the user’s identifier. Both forms are supported and return the same response shape.\n\nPath parameters\n- {{userEmail}} (string, required): The user’s email address. Example: 341479@uwr.edu.pl\n- Alternative: {{userId}} (string, required when using the users/{{userId}}/jobs path): The user’s identifier. Example: user_1764603160153\n\nAuthentication\n- Typically requires a valid Bearer token inherited from the parent folder/collection. Ensure Authorization is set to Bearer Token or inherited. If your API uses a different auth mechanism, configure it at the folder/collection level and let this request inherit it.\n\nQuery parameters\n- None.\n\nRequest body\n- None.\n\nSuccess response (200)\nExample payload based on the last successful response:\n{\n  \"jobs\": [\n    {\n      \"id\": \"1764722864093\",\n      \"fileId\": \"20251203_014648_test.gcode\",\n      \"originalFileName\": \"test.gcode\",\n      \"userId\": \"user_1764603160153\",\n      \"userEmail\": \"341479@uwr.edu.pl\",\n      \"status\": \"pending\",\n      \"scheduledAt\": null,\n      \"createdAt\": \"2025-12-03T01:47:44,093Z\",\n      \"_rid\": \"JvFmAMv1VqoXAAAAAAAAAA==\",\n      \"_self\": \"dbs/JvFmAA==/colls/JvFmAMv1Vqo=/docs/JvF...\",\n      \"_etag\": \"\\\"7e01caef-0000-4700-0000-6930ef430000\\\"\",\n      \"_attachments\": \"attachments/\",\n      \"_ts\": 1764814659\n    }\n  ],\n  \"count\": 1\n}\n\nField notes\n- jobs: Array of job objects.\n- jobs[].status: pending | running | completed | failed (set may vary by system).\n- jobs[].scheduledAt: null or ISO timestamp if scheduled.\n- createdAt: ISO timestamp. Note: example shows a comma in milliseconds (\",093Z\"); actual format may be standard ISO 8601 (e.g., 2025-12-03T01:47:44.093Z).\n- The fields starting with _ (e.g., _rid, _etag, _ts) are metadata from the data store and may be present depending on the backend.\n\nExamples\n- By email: GET https://api.example.com/users/341479@uwr.edu.pl/jobs\n- By userId: GET https://api.example.com/users/user_1764603160153/jobs\n\nPossible error responses\n- 400 Bad Request: Invalid {{userEmail}} or {{userId}} path parameter (depending on which variant is used).\n- 401 Unauthorized: Missing or invalid authentication.\n- 403 Forbidden: Authenticated user is not allowed to access jobs for the specified user.\n- 404 Not Found: No user or jobs found.\n- 429 Too Many Requests: Rate."
 					},
 					"response": []
 				}
