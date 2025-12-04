@@ -180,6 +180,34 @@
 						"description": "Purpose  \nPATCH a user’s role to admin. This endpoint elevates an existing user to the admin role.\n\nURL and Path Parameters\n\n- Base URL: {{user_url}} (provided by the active environment)\n    \n- Path: /{userId}/role/{role}\n    - userId: The unique user identifier. In the current example it is user_1764603160153.\n        \n    - role: The target role to assign. In this request it is admin.\n        \n\nVariables Used\n\n- {{user_url}}: Environment variable pointing to the User Service base URL (set in the AddiPi environment). Example: [https://api.example.com/users](https://api.example.com/users)\n    \n\nAuthentication\n\n- Typically requires an authenticated admin or system token. Inherit auth from the parent collection/folder if configured, or set on the request as needed. Ensure the token has permission to update user roles.\n    \n\nRequest\n\n- Method: PATCH\n    \n- Body: none\n    \n\nResponses\n\n- 200 OK: Role successfully updated. Example (captured response):  \n    {  \n    \"id\": \"user_1764603160153\",  \n    \"email\": \"[341479@uwr.edu.pl](https://mailto:341479@uwr.edu.pl)\",  \n    \"firstName\": \"Oliwer\",  \n    \"lastName\": \"Urbaniak\",  \n    \"role\": \"admin\",  \n    \"isVerified\": true,  \n    \"createdAt\": \"2025-12-01T16:32:40,153Z\",  \n    \"updatedAt\": \"2025-12-04T02:29:31,215Z\",  \n    \"_rid\": \"JvFmANJMdM0JAAAAAAAAAA==\",  \n    \"_self\": \"dbs/JvFmAA==/colls/JvFmANJMdM0=/docs/JvF...\",  \n    \"_etag\": \"\"7e01e168-0000-4700-0000-6930e3f30000\"\",  \n    \"_attachments\": \"attachments/\",  \n    \"_ts\": 1764811763  \n    }\n    \n- 400 Bad Request: Invalid role value or malformed userId.\n    \n- 401 Unauthorized / 403 Forbidden: Missing or insufficient auth to modify roles.\n    \n- 404 Not Found: userId does not exist.\n    \n- 409 Conflict: Attempt to set the same role again may be treated as a no-op depending on the service, but some implementations can return conflict.\n    \n- 5xx: Server error from User Service.\n    \n\nIdempotency and Side Effects\n\n- Calling this with role already set to admin should be idempotent (no change in state). The service may still update updatedAt or return the existing resource representation. No resource creation; only a role update.\n    \n\nUsage with Environments and Variables\n\n- Set {{user_url}} in the AddiPi environment to your User Service base URL. Duplicate environments for different stages (e.g., Dev/QA/Prod) and switch the active environment to target the desired stage.\n    \n- To elevate a different user or role, edit the path segments directly in the request URL (or create a path variableized version using a collection-level variable like {{user_id}} and {{target_role}} for reuse in collection runs/monitors)."
 					},
 					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"id": "43410429-d5997c74-9bdc-4e38-8c6d-66f3e35485d6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyXzE3NjQ2MDMxNjAxNTMiLCJlbWFpbCI6IjM0MTQ3OUB1d3IuZWR1LnBsIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzY0ODEzMDM4LCJleHAiOjE3NjQ4MTM5Mzh9.q1IOEGjXk3C6qHD5EdxfgOuqq2ayLMnZr_lvoEz0Dng",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{user_url}}/test2@uwr.edu.pl",
+							"host": [
+								"{{user_url}}"
+							],
+							"path": [
+								"test2@uwr.edu.pl"
+							]
+						},
+						"description": "Deletes a user by identifier (email or userId).\n\nSummary\n\n- Method: DELETE\n    \n- URL: `{{user_url}}/{identifier}`\n    \n- Identifier can be either:\n    - Email (e.g., `test2@uwr.edu.pl`)\n        \n    - userId (e.g., `user_3432432`)\n        \n- Auth: Bearer token is required (set via the Authorization header).\n    \n\nAuthorization  \nEnsure a valid JWT Bearer token is present. In this workspace, tokens are typically stored in variables or set directly in the request’s Authorization header.\n\nPath parameter\n\n- identifier (string): Accepts either an email or a userId.\n    - Examples:\n        - Email: `{{user_url}}/test2@uwr.edu.pl`\n            \n        - User ID: `{{user_url}}/user_3432432`\n            \n\nResponses\n\n- 200 OK: User deleted successfully. Example response:\n    \n    ``` json\n    {\"message\":\"User deleted successfully\"}\n    \n     ```\n    \n- 401 Unauthorized: Missing or invalid token.\n    \n- 403 Forbidden: Insufficient permissions (requires admin role).\n    \n- 404 Not Found: No user found for the provided identifier.\n    \n\nNotes\n\n- This request uses the `{{user_url}}` environment/collection variable for the service base URL.\n    \n- Deletion is permanent. Confirm the identifier before sending.\n    \n- If both an email and a userId match the same user in your system, the server resolves the path to the user associated with the provided identifier.\n    \n\nExample cURL\n\n``` bash\n# By email\ncurl -X DELETE \"${user_url}/test2@uwr.edu.pl\" \\\n  -H \"Authorization: Bearer <your_jwt_token>\"\n# By userId\ncurl -X DELETE \"${user_url}/user_3432432\" \\\n  -H \"Authorization: Bearer <your_jwt_token>\"\n\n ```"
+					},
+					"response": []
 				}
 			],
 			"id": "43410429-c0825be0-4f40-4ff8-b5ae-ff83623db5d9"
