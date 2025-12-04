@@ -92,6 +92,18 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "getUserById",
+					"id": "43410429-b2f0d3a6-2edf-46c6-9f4f-3c0e71f532a6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "43410429-c0825be0-4f40-4ff8-b5ae-ff83623db5d9"
