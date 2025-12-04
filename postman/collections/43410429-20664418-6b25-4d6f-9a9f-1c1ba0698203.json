@@ -208,6 +208,18 @@
 						"description": "Deletes a user by identifier (email or userId).\n\nSummary\n\n- Method: DELETE\n    \n- URL: `{{user_url}}/{identifier}`\n    \n- Identifier can be either:\n    - Email (e.g., `test2@uwr.edu.pl`)\n        \n    - userId (e.g., `user_3432432`)\n        \n- Auth: Bearer token is required (set via the Authorization header).\n    \n\nAuthorization  \nEnsure a valid JWT Bearer token is present. In this workspace, tokens are typically stored in variables or set directly in the request’s Authorization header.\n\nPath parameter\n\n- identifier (string): Accepts either an email or a userId.\n    - Examples:\n        - Email: `{{user_url}}/test2@uwr.edu.pl`\n            \n        - User ID: `{{user_url}}/user_3432432`\n            \n\nResponses\n\n- 200 OK: User deleted successfully. Example response:\n    \n    ``` json\n    {\"message\":\"User deleted successfully\"}\n    \n     ```\n    \n- 401 Unauthorized: Missing or invalid token.\n    \n- 403 Forbidden: Insufficient permissions (requires admin role).\n    \n- 404 Not Found: No user found for the provided identifier.\n    \n\nNotes\n\n- This request uses the `{{user_url}}` environment/collection variable for the service base URL.\n    \n- Deletion is permanent. Confirm the identifier before sending.\n    \n- If both an email and a userId match the same user in your system, the server resolves the path to the user associated with the provided identifier.\n    \n\nExample cURL\n\n``` bash\n# By email\ncurl -X DELETE \"${user_url}/test2@uwr.edu.pl\" \\\n  -H \"Authorization: Bearer <your_jwt_token>\"\n# By userId\ncurl -X DELETE \"${user_url}/user_3432432\" \\\n  -H \"Authorization: Bearer <your_jwt_token>\"\n\n ```"
 					},
 					"response": []
+				},
+				{
+					"name": "getUserJobs",
+					"id": "43410429-68adccb7-3b58-4f2b-8584-b2900c907f5e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "43410429-c0825be0-4f40-4ff8-b5ae-ff83623db5d9"
