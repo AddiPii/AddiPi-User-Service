@@ -153,41 +153,6 @@
 						"description": "### Update User Role\n\nPATCH {{user_url}}/user_1764603160153/role\n\nUpdates the role for a specific user. Use this endpoint to promote/demote a user (e.g., to admin). The response returns the full user object reflecting the updated role.\n\n#### Authentication\n\n- Requires authenticated request (e.g., Bearer access token) with sufficient privileges to manage user roles.\n    \n- Inherit auth from parent collection/folder if configured.\n    \n\n#### Path\n\n- userId (embedded in path): `user_1764603160153`\n    \n\n#### Request Body (JSON)\n\n```\n{\n  \"role\": \"admin\"\n}\n\n ```\n\n- role: string (required). Example values: `user`, `admin`. Must match server-allowed roles.\n    \n\n#### Sample Request\n\n```\nPATCH {{user_url}}/user_1764603160153/role\nContent-Type: application/json\n{\n  \"role\": \"admin\"\n}\n\n ```\n\n#### Successful Response (200)\n\n```\n{\n  \"id\": \"user_1764603160153\",\n  \"email\": \"341479@uwr.edu.pl\",\n  \"firstName\": \"Oliwer\",\n  \"lastName\": \"Urbaniak\",\n  \"role\": \"admin\",\n  \"isVerified\": true,\n  \"createdAt\": \"2025-12-01T16:32:40,153Z\",\n  \"updatedAt\": \"2025-12-04T02:17:07,782Z\",\n  \"_rid\": \"JvFmANJMdM0JAAAAAAAAAA==\",\n  \"_self\": \"dbs/JvFmAA==/colls/JvFmANJMdM0=/docs/JvF...\",\n  \"_etag\": \"\\\"7e018946-0000-4700-0000-6930e1090000\\\"\",\n  \"_attachments\": \"attachments/\",\n  \"_ts\": 1764811017\n}\n\n ```\n\n#### Status Codes\n\n- 200 OK: Role updated successfully; returns the updated user.\n    \n- 400 Bad Request: Invalid role value or body schema.\n    \n- 401 Unauthorized: Missing/invalid auth.\n    \n- 403 Forbidden: Authenticated but insufficient privileges to change roles.\n    \n- 404 Not Found: User does not exist.\n    \n- 409 Conflict: Update conflict or role transition not allowed.\n    \n- 429 Too Many Requests: Rate limit exceeded.\n    \n- 500 Internal Server Error: Unexpected server error.\n    \n\n#### Notes\n\n- {{user_url}} is sourced from the active environment (e.g., AddiPi). Ensure it points to the correct User Service base URL.\n    \n- This request currently uses a raw JSON body and no saved tests or examples."
 					},
 					"response": []
-				},
-				{
-					"name": "updateUserRoleByParams",
-					"id": "43410429-a9b315af-8330-4f4a-bdb3-1228813b6f2e",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"role\": \"admin\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{user_url}}/user_1764603160153/role",
-							"host": [
-								"{{user_url}}"
-							],
-							"path": [
-								"user_1764603160153",
-								"role"
-							]
-						},
-						"description": "### Update User Role\n\nPATCH {{user_url}}/user_1764603160153/role\n\nUpdates the role for a specific user. Use this endpoint to promote/demote a user (e.g., to admin). The response returns the full user object reflecting the updated role.\n\n#### Authentication\n\n- Requires authenticated request (e.g., Bearer access token) with sufficient privileges to manage user roles.\n    \n- Inherit auth from parent collection/folder if configured.\n    \n\n#### Path\n\n- userId (embedded in path): `user_1764603160153`\n    \n\n#### Request Body (JSON)\n\n```\n{\n  \"role\": \"admin\"\n}\n\n ```\n\n- role: string (required). Example values: `user`, `admin`. Must match server-allowed roles.\n    \n\n#### Sample Request\n\n```\nPATCH {{user_url}}/user_1764603160153/role\nContent-Type: application/json\n{\n  \"role\": \"admin\"\n}\n\n ```\n\n#### Successful Response (200)\n\n```\n{\n  \"id\": \"user_1764603160153\",\n  \"email\": \"341479@uwr.edu.pl\",\n  \"firstName\": \"Oliwer\",\n  \"lastName\": \"Urbaniak\",\n  \"role\": \"admin\",\n  \"isVerified\": true,\n  \"createdAt\": \"2025-12-01T16:32:40,153Z\",\n  \"updatedAt\": \"2025-12-04T02:17:07,782Z\",\n  \"_rid\": \"JvFmANJMdM0JAAAAAAAAAA==\",\n  \"_self\": \"dbs/JvFmAA==/colls/JvFmANJMdM0=/docs/JvF...\",\n  \"_etag\": \"\\\"7e018946-0000-4700-0000-6930e1090000\\\"\",\n  \"_attachments\": \"attachments/\",\n  \"_ts\": 1764811017\n}\n\n ```\n\n#### Status Codes\n\n- 200 OK: Role updated successfully; returns the updated user.\n    \n- 400 Bad Request: Invalid role value or body schema.\n    \n- 401 Unauthorized: Missing/invalid auth.\n    \n- 403 Forbidden: Authenticated but insufficient privileges to change roles.\n    \n- 404 Not Found: User does not exist.\n    \n- 409 Conflict: Update conflict or role transition not allowed.\n    \n- 429 Too Many Requests: Rate limit exceeded.\n    \n- 500 Internal Server Error: Unexpected server error.\n    \n\n#### Notes\n\n- {{user_url}} is sourced from the active environment (e.g., AddiPi). Ensure it points to the correct User Service base URL.\n    \n- This request currently uses a raw JSON body and no saved tests or examples."
-					},
-					"response": []
 				}
 			],
 			"id": "43410429-c0825be0-4f40-4ff8-b5ae-ff83623db5d9"
