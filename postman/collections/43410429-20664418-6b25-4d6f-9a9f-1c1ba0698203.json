@@ -182,7 +182,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "deleteUser",
 					"id": "43410429-d5997c74-9bdc-4e38-8c6d-66f3e35485d6",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
