@@ -1,6 +1,6 @@
 import express from 'express'
 import type { Router } from 'express'
-import { getAllUsers, getUserById, updateUserRole } from '../controllers/usersControllers'
+import { getAllUsers, getUserById, updateUserRole, updateUserRoleByParams } from '../controllers/usersControllers'
 import requireAuth from '../middleware/requireAuth'
 import requireAdmin from '../middleware/requireAdmin'
 
@@ -12,3 +12,5 @@ usersRouter.get('/', requireAuth, requireAdmin, getAllUsers)
 usersRouter.get('/:userId', requireAuth, requireAdmin, getUserById)
 
 usersRouter.patch('/:userId/role', updateUserRole)
+
+usersRouter.patch('/userId/role', updateUserRoleByParams)
