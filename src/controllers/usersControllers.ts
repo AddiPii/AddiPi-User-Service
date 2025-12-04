@@ -138,8 +138,8 @@ export const deleteUser = async (
                 return res.status(400).json({ error: 'Cannot delete your own account' })
             }
 
-            const query = `SELECT * FROM c WHERE c.email = @email`
-            const parameters = [
+            const query: string = `SELECT * FROM c WHERE c.email = @email`
+            const parameters: Array<{name:string, value: string}> = [
                 { name: '@email', value: userId }
             ] 
             const { resources: user } = await usersContainer.items.query({
@@ -162,4 +162,11 @@ export const deleteUser = async (
         console.error('Delete user error ', err)
         res.status(500).json({ error: 'Internal server error' })
     }
+}
+
+export const getUserJobs = async (
+    req: Request,
+    res: Response
+): Promise<void | Response<{error: string}>> => {
+    
 }
