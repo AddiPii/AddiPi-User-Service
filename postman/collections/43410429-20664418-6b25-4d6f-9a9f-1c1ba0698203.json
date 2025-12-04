@@ -101,7 +101,16 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{user_url}}/user_1764603160153",
+							"host": [
+								"{{user_url}}"
+							],
+							"path": [
+								"user_1764603160153"
+							]
+						}
 					},
 					"response": []
 				}
