@@ -26,3 +26,14 @@ export interface User {
     updatedAt: string,
     microsoftId?: string
 }
+
+export type Job = {
+    id: number,
+    fileId: string,
+    originalFileName: string,
+    userId: string,
+    userEmail: string,
+    status: "scheduled" | "pending" | "failed" | "completed",
+    scheduledAt: string,
+    createdAt: string
+}

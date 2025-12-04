@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { jobsContainer, usersContainer } from '../services/containers'
-import type { User } from '../type'
+import type { Job, User } from '../type'
 import getLocalISO from '../helpers/getLocalISO'
 import { AuthUser } from '../middleware/mwTypes'
 
@@ -166,7 +166,7 @@ export const deleteUser = async (
 
 export const getUserJobs = async (
     req: Request<{ userId: string }, unknown, {}, { sort?: string, limit?: string}>,
-    res: Response
+    res: Response<{ error: string } | { jobs: Array<Job>, count: number }>
 ): Promise<void | Response<{error: string}>> => {
     try {
         const { userId } = req.params
@@ -182,7 +182,7 @@ export const getUserJobs = async (
             id = 'userId'
         }
 
-        let query = `SELECT * FROM c WHERE c.${id} = @userId ORDER BY c.createdAt`
+        let query: string = `SELECT * FROM c WHERE c.${id} = @userId ORDER BY c.createdAt`
         
         if ( sort === "ASC" || sort === "asc" ){
             query += " ASC"
@@ -190,11 +190,11 @@ export const getUserJobs = async (
             query += " DESC"
         }
 
-        const parameters = [{
+        const parameters: Array<{name: string, value: string}> = [{
             name: '@userId', value: userId
         }]
 
-        const { resources: jobs } = await jobsContainer.items.query({
+        const { resources: jobs }: {resources: Array<Job>} = await jobsContainer.items.query({
             query,
             parameters
         }, { maxItemCount: limit }).fetchAll()
