@@ -45,6 +45,7 @@ export const getUserById = async (
     try {
         
     } catch (error) {
-        
+        console.error('Get specific user error ', error)
+        res.status(500).json({ error: 'Internal server error' })
     }
 }
