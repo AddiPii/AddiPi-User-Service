@@ -41,8 +41,15 @@ export const getAllUsers = async (
 export const getUserById = async (
     req: Request,
     res: Response,
-): Promise<void | {error: string}> => {
+): Promise<void | Response<{error: string}>> => {
     try {
+        const { userId } = req.params
+        const { resource: user } = await usersContainer.item(userId, userId).read<User>()
+
+        if (!user){
+            return res.status(404).json({error: 'User not found'})
+        }
+
         
     } catch (error) {
         console.error('Get specific user error ', error)
