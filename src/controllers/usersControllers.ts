@@ -6,11 +6,11 @@ import { AuthUser } from '../middleware/mwTypes'
 
 
 export const getAllUsers = async (
-    req: Request<{}, unknown, {}, {sort: string, limit: string}>,
+    req: Request<{}, unknown, {}, {sort?: string, limit?: string}>,
     res: Response<{error: string} | {users: Array<User>, count: number}>
 ): Promise<void | Response<{error: string}>> => {
     try {
-        const { sort }: { sort: string | undefined } = req.query
+        const { sort }: { sort?: string | undefined } = req.query
 
         const limit: number = Math.min(Math.max(
             parseInt(req.query.limit as string || '50', 10), 1), 100)
@@ -182,8 +182,8 @@ export const getUserJobs = async (
             id = 'userId'
         }
 
-        let query = `SELECT * FROM c WHERE c.@id = @userId ORDER BY c.createdAt`
-
+        let query = `SELECT * FROM c WHERE c.${id} = @userId ORDER BY c.createdAt`
+        
         if ( sort === "ASC" || sort === "asc" ){
             query += " ASC"
         } else {
@@ -191,9 +191,6 @@ export const getUserJobs = async (
         }
 
         const parameters = [{
-            name: '@id', value: id
-        },
-        {
             name: '@userId', value: userId
         }]
 
