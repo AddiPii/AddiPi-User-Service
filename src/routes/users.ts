@@ -9,4 +9,4 @@ export const usersRouter: Router = express.Router()
 
 usersRouter.get('/', requireAuth, requireAdmin, getAllUsers)
 
-usersRouter.get('/:userId', getUserById)
+usersRouter.get('/:userId', requireAuth, requireAdmin, getUserById)
