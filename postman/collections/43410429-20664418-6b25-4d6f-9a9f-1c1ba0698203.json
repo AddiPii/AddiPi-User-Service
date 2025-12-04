@@ -188,8 +188,23 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyXzE3NjQ2MDMxNjAxNTMiLCJlbWFpbCI6IjM0MTQ3OUB1d3IuZWR1LnBsIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzY0ODEzMDM4LCJleHAiOjE3NjQ4MTM5Mzh9.q1IOEGjXk3C6qHD5EdxfgOuqq2ayLMnZr_lvoEz0Dng",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{user_url}}/test2@uwr.edu.pl",
+							"host": [
+								"{{user_url}}"
+							],
+							"path": [
+								"test2@uwr.edu.pl"
+							]
+						}
 					},
 					"response": []
 				}
