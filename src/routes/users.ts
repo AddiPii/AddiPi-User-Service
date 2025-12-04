@@ -11,6 +11,6 @@ usersRouter.get('/', requireAuth, requireAdmin, getAllUsers)
 
 usersRouter.get('/:userId', requireAuth, requireAdmin, getUserById)
 
-usersRouter.patch('/:userId/role', updateUserRole)
+usersRouter.patch('/:userId/role/:role', updateUserRoleByParams)
 
-usersRouter.patch('/userId/role', updateUserRoleByParams)
+usersRouter.patch('/:userId/role', requireAuth, requireAdmin, updateUserRole)
