@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { usersContainer } from '../services/containers'
+import { jobsContainer, usersContainer } from '../services/containers'
 import type { User } from '../type'
 import getLocalISO from '../helpers/getLocalISO'
 import { AuthUser } from '../middleware/mwTypes'
@@ -168,5 +168,44 @@ export const getUserJobs = async (
     req: Request,
     res: Response
 ): Promise<void | Response<{error: string}>> => {
-    
+    try {
+        const { userId } = req.params
+        const { sort } = req.query
+        const limit: number = Math.min(Math.max(
+            parseInt(req.query.limit as string || '50', 10), 1), 100)
+        
+        let id: string
+
+        if (userId.includes('@uwr.edu.pl')){
+            id = 'userEmail'
+        } else{
+            id = 'userId'
+        }
+
+        let query = `SELECT * FROM c WHERE c.@id = @userId ORDER BY c.createdAt`
+
+        if ( sort === "ASC" || sort === "asc" ){
+            query += " ASC"
+        } else {
+            query += " DESC"
+        }
+
+        const parameters = [{
+            name: '@id', value: id
+        },
+        {
+            name: '@userId', value: userId
+        }]
+
+        const { resources: jobs } = await jobsContainer.items.query({
+            query,
+            parameters
+        }, { maxItemCount: limit }).fetchAll()
+
+        res.json({ jobs, count: jobs.length })
+        
+    } catch (err) {
+        console.error('Get user\'s job error ', err)
+        res.status(500).json({ error: 'Internal server error' })
+    }
 }
