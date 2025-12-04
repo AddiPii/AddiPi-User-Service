@@ -90,3 +90,34 @@ export const updateUserRole = async (
         res.status(500).json({ error: 'Internal server error' })
     }
 }
+
+
+export const updateUserRoleByParams = async (
+    req: Request<{userId: string, role: 'user' | 'admin'}, unknown, {}, {}>,
+    res: Response<{ error: string } | User>
+):Promise<void | Response<{error: string}>> => {
+    try {
+        const { userId, role } = req.params
+        
+        if (!role || !['admin', 'user'].includes(role)) {
+            return res.status(400).json({error: 'Invalid role'})
+        }
+
+        const { resource: user } = await usersContainer.item(userId, userId).read<User>()
+
+        if (!user){
+            return res.status(404).json({ error: 'User not found' })
+        }
+
+        user.role = role
+        user.updatedAt = getLocalISO()
+
+        await usersContainer.item(user.id, user.id).replace(user)
+
+        const { password, ...userWithoutPassword }: User = user
+        res.json(userWithoutPassword)
+    } catch (err) {
+        console.error('Update user role error ', err)
+        res.status(500).json({ error: 'Internal server error' })
+    }
+}
