@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { usersContainer } from '../services/containers'
 import type { User } from '../type'
 import getLocalISO from '../helpers/getLocalISO'
+import { AuthUser } from '../middleware/mwTypes'
 
 
 export const getAllUsers = async (
@@ -128,5 +129,13 @@ export const deleteUser = async (
     req: Request,
     res: Response
 ): Promise<void | Response<{error:string}>> => {
-    
+    const { userId } = req.params
+    const authUser = (req as any).user as AuthUser
+
+    if (userId === authUser.userId){
+        return res.status(400).json({ error: 'Cannot delete your own account' })
+    }
+
+    await usersContainer.item(userId, userId).delete()
+    res.json({ message: 'User deleted successfully' })
 }
