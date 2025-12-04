@@ -63,7 +63,7 @@
 			"name": "users",
 			"item": [
 				{
-					"name": "New Request",
+					"name": "getAllUsers",
 					"id": "43410429-d421ad15-6e8e-48e2-8405-3ae884bf0c59",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
