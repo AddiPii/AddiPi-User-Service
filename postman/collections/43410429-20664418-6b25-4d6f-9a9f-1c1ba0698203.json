@@ -120,7 +120,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "updateUserRole",
 					"id": "43410429-a99de5fe-445a-4346-813f-09e2d9815e7f",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
