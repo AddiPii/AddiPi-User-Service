@@ -62,7 +62,7 @@ export const getUserById = async (
 
 export const updateUserRole = async (
     req: Request<{userId: string}, unknown, {role: 'user' | 'admin'}, {}>,
-    res: Response
+    res: Response<{ error: string } | User>
 ):Promise<void | Response<{error: string}>> => {
     try {
         const { userId } = req.params
