@@ -126,8 +126,30 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": []
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user_url}}/user_1764603160153/role",
+							"host": [
+								"{{user_url}}"
+							],
+							"path": [
+								"user_1764603160153",
+								"role"
+							]
+						}
 					},
 					"response": []
 				}
