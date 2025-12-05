@@ -239,7 +239,7 @@
 			"name": "jobs",
 			"item": [
 				{
-					"name": "New Request",
+					"name": "getUpcommingJobs",
 					"id": "43410429-00cd02b2-ab4c-47c8-b8fd-0c180cee620d",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
