@@ -49,3 +49,30 @@ export const getCompletedJobs = async (
         res.status(500).json({ error: 'Internal server error' })
     }
 }
+
+
+export const deleteJobById = async (
+    req: Request,
+    res: Response<{ message: string } | { error: string }>
+): Promise<void | Response<{ error: string }>> => {
+    try {
+        const { jobId } = req.params
+    
+        const query = `SELECT * FROM c WHERE c.id = @jobId`
+        const { resources } = await jobsContainer.items.query({
+            query,
+            parameters: [{ name: '@jobId', value: jobId }]
+        }).fetchAll()
+    
+        if (resources.length === 0) {
+            return res.status(404).json({error: 'Job not found'})
+        }
+    
+        await jobsContainer.item(jobId, jobId).delete()
+    
+        res.json({ message: 'Job deleted successfully' })
+    } catch (err) {
+        console.log('Delete job error ', err)
+        res.status(500).json({ error: 'Internal server error' })
+    }
+}
