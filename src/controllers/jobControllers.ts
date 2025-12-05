@@ -5,7 +5,7 @@ import { Job } from "../type";
 
 export const getUpcommingJobs = async (
     req: Request,
-    res: Response<Job[] | {error: string}>
+    res: Response<Array<Job> | {error: string}>
 ): Promise<void> => {
     try {
         const query: string = `
@@ -26,12 +26,12 @@ export const getUpcommingJobs = async (
 
 export const getCompletedJobs = async (
     req: Request<{}, unknown, {}, { limit: string }>,
-    res: Response
+    res: Response<Array<Job> | { error: string }>
 ): Promise<void> => {
     try {
         const { limit } = req.query
 
-        let query =  `
+        let query: string =  `
             SELECT TOP 5 * FROM c WHERE
             c.status = 'completed'
             ORDER BY c.updatedAt DESC
