@@ -25,18 +25,27 @@ export const getUpcommingJobs = async (
 
 
 export const getCompletedJobs = async (
-    req: Request,
+    req: Request<{}, unknown, {}, { limit: string }>,
     res: Response
 ): Promise<void> => {
     try {
+        const { limit } = req.query
 
-        
-        const query =  `
-            SELECT TOP 5 * FROM c WHERE c.status = 'completed' ORDER BY c.updatedAt DESC
+        let query =  `
+            SELECT TOP 5 * FROM c WHERE
+            c.status = 'completed'
+            ORDER BY c.updatedAt DESC
             `
+        
+        if (limit || typeof(limit) === 'string' || !isNaN(parseInt(limit))){
+            query = query.replace('5', limit)
+        }
 
+        const { resources: jobs } = await jobsContainer.items.query(query).fetchAll()
         
+        res.json(jobs)
     } catch (err) {
-        
+        console.log('Get recent completed jobs error:', err)
+        res.status(500).json({ error: 'Internal server error' })
     }
 }
