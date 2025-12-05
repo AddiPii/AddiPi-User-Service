@@ -353,6 +353,18 @@
 							"body": "{\n    \"jobs\": [\n        {\n            \"id\": \"1764722821093\",\n            \"fileId\": \"20251203_013648_test2.gcode\",\n            \"originalFileName\": \"test2.gcode\",\n            \"userId\": \"user_1764603160153\",\n            \"userEmail\": \"341479@uwr.edu.pl\",\n            \"status\": \"completed\",\n            \"scheduledAt\": null,\n            \"createdAt\": \"2025-12-05T01:47:44,093Z\",\n            \"_rid\": \"JvFmAMv1VqoYAAAAAAAAAA==\",\n            \"_self\": \"dbs/JvFmAA==/colls/JvFmAMv1Vqo=/docs/JvFmAMv1VqoYAAAAAAAAAA==/\",\n            \"_etag\": \"\\\"8e01683e-0000-4700-0000-69323c4e0000\\\"\",\n            \"_attachments\": \"attachments/\",\n            \"_ts\": 1764899918\n        }\n    ],\n    \"count\": 1\n}"
 						}
 					]
+				},
+				{
+					"name": "deleteJobById",
+					"id": "43410429-dfa12d2f-e030-4156-b609-afec597b94c4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "43410429-f92d49e4-e1bc-446b-b0a3-5e3f7973e830"
