@@ -1,13 +1,14 @@
 import type { Request, Response } from "express";
 import { jobsContainer } from "../services/containers";
+import { Job } from "../type";
 
 
 export const getUpcommingJobs = async (
     req: Request,
-    res: Response
+    res: Response<Job[] | {error: string}>
 ): Promise<void> => {
     try {
-        const query = `
+        const query: string = `
             SELECT * FROM c WHERE
             c.status IN ('scheduled', 'pending')
             ORDER BY c.scheduledAt ASC
