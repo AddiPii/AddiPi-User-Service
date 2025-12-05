@@ -234,6 +234,24 @@
 				}
 			],
 			"id": "43410429-c0825be0-4f40-4ff8-b5ae-ff83623db5d9"
+		},
+		{
+			"name": "jobs",
+			"item": [
+				{
+					"name": "New Request",
+					"id": "43410429-00cd02b2-ab4c-47c8-b8fd-0c180cee620d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
+			"id": "43410429-f92d49e4-e1bc-446b-b0a3-5e3f7973e830"
 		}
 	]
 }
