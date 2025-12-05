@@ -43,7 +43,7 @@ export const getCompletedJobs = async (
 
         const { resources: jobs } = await jobsContainer.items.query(query).fetchAll()
         
-        res.json(jobs)
+        res.json({jobs, count: jobs.length})
     } catch (err) {
         console.log('Get recent completed jobs error:', err)
         res.status(500).json({ error: 'Internal server error' })
