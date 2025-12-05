@@ -1,10 +1,11 @@
 import express from 'express'
 import type { Router } from 'express'
 import { getCompletedJobs, getUpcommingJobs } from '../controllers/jobControllers'
+import requireAuth from '../middleware/requireAuth'
 
 
 export const jobsRouter: Router = express.Router()
 
-jobsRouter.get('/upcomming', getUpcommingJobs)
+jobsRouter.get('/upcomming', requireAuth, getUpcommingJobs)
 
-jobsRouter.get('/recent-completed', getCompletedJobs)
+jobsRouter.get('/recent-completed', requireAuth, getCompletedJobs)
