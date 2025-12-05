@@ -364,7 +364,66 @@
 						"method": "GET",
 						"header": []
 					},
-					"response": []
+					"response": [
+						{
+							"id": "43410429-0149d824-7fc4-441b-979c-bca91dfc2a68",
+							"name": "23",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{user_url}}/jobs/23",
+									"host": [
+										"{{user_url}}"
+									],
+									"path": [
+										"jobs",
+										"23"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-jQsuEFTzs9zNSZBLz14vLAIoW8g\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 Dec 2025 02:16:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"message\": \"Job deleted successfully\"\n}"
+						}
+					]
 				}
 			],
 			"id": "43410429-f92d49e4-e1bc-446b-b0a3-5e3f7973e830"
