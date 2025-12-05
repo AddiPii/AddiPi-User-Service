@@ -5,7 +5,7 @@ import { Job } from "../type";
 
 export const getUpcommingJobs = async (
     req: Request,
-    res: Response<Array<Job> | {error: string}>
+    res: Response<{ jobs: Array<Job>, count: number } | {error: string}>
 ): Promise<void> => {
     try {
         const query: string = `
@@ -16,7 +16,7 @@ export const getUpcommingJobs = async (
         
         const { resources: jobs } = await jobsContainer.items.query(query).fetchAll()
         
-        res.json(jobs)
+        res.json({ jobs, count: jobs.length })
     } catch (err) {
         console.log('Get upcoming jobs error:', err)
         res.status(500).json({ error: 'Internal server error' })
