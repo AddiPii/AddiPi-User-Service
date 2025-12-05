@@ -269,7 +269,23 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{user_url}}/jobs/recent-completed?limit=6",
+							"host": [
+								"{{user_url}}"
+							],
+							"path": [
+								"jobs",
+								"recent-completed"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "6"
+								}
+							]
+						}
 					},
 					"response": []
 				}
