@@ -361,8 +361,18 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{user_url}}/jobs/23",
+							"host": [
+								"{{user_url}}"
+							],
+							"path": [
+								"jobs",
+								"23"
+							]
+						}
 					},
 					"response": [
 						{
