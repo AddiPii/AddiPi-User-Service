@@ -287,7 +287,72 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"id": "43410429-94d885cf-251c-49a7-b4be-3d0a0fd348e6",
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{user_url}}/jobs/recent-completed?limit=6",
+									"host": [
+										"{{user_url}}"
+									],
+									"path": [
+										"jobs",
+										"recent-completed"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "461"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1cd-l3dSoo6dc0e1SkTwruvwia13wmo\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 Dec 2025 01:58:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"jobs\": [\n        {\n            \"id\": \"1764722821093\",\n            \"fileId\": \"20251203_013648_test2.gcode\",\n            \"originalFileName\": \"test2.gcode\",\n            \"userId\": \"user_1764603160153\",\n            \"userEmail\": \"341479@uwr.edu.pl\",\n            \"status\": \"completed\",\n            \"scheduledAt\": null,\n            \"createdAt\": \"2025-12-05T01:47:44,093Z\",\n            \"_rid\": \"JvFmAMv1VqoYAAAAAAAAAA==\",\n            \"_self\": \"dbs/JvFmAA==/colls/JvFmAMv1Vqo=/docs/JvFmAMv1VqoYAAAAAAAAAA==/\",\n            \"_etag\": \"\\\"8e01683e-0000-4700-0000-69323c4e0000\\\"\",\n            \"_attachments\": \"attachments/\",\n            \"_ts\": 1764899918\n        }\n    ],\n    \"count\": 1\n}"
+						}
+					]
 				}
 			],
 			"id": "43410429-f92d49e4-e1bc-446b-b0a3-5e3f7973e830"
