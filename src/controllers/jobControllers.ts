@@ -29,7 +29,7 @@ export const getCompletedJobs = async (
     res: Response
 ): Promise<void> => {
     try {
-        const query =  `SELECT TOP 5 * FROM c WHERE `
+        const query =  `SELECT TOP 5 * FROM c WHERE c.status = 'completed'`
     } catch (err) {
         
     }
