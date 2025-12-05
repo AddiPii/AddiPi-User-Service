@@ -26,7 +26,7 @@ export const getUpcommingJobs = async (
 
 export const getCompletedJobs = async (
     req: Request<{}, unknown, {}, { limit: string }>,
-    res: Response<Array<Job> | { error: string }>
+    res: Response<{ jobs: Array<Job>, count: number } | { error: string }>
 ): Promise<void> => {
     try {
         const { limit } = req.query
