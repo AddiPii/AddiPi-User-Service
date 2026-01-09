@@ -7,8 +7,8 @@ import requireAdmin from '../middleware/requireAdmin'
 
 export const jobsRouter: Router = express.Router()
 
-jobsRouter.get('/upcomming', requireAuth, getUpcommingJobs)
+jobsRouter.get('/upcomming', getUpcommingJobs)
 
-jobsRouter.get('/recent-completed', requireAuth, getCompletedJobs)
+jobsRouter.get('/recent-completed', getCompletedJobs)
 
 jobsRouter.delete('/:jobId', requireAuth, requireAdmin, deleteJobById)
