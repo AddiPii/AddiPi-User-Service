@@ -434,18 +434,6 @@
 							"body": "{\n    \"message\": \"Job deleted successfully\"\n}"
 						}
 					]
-				},
-				{
-					"name": "New Request",
-					"id": "43410429-9606ddc8-1df5-46ac-9619-bbb9ad179b08",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
 				}
 			],
 			"id": "43410429-f92d49e4-e1bc-446b-b0a3-5e3f7973e830"
