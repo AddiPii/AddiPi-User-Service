@@ -206,3 +206,15 @@ export const getUserJobs = async (
         res.status(500).json({ error: 'Internal server error' })
     }
 }
+
+export const verifyUserById = async (
+    req: Request<{ userId: string }>,
+    res: Response<{ error: string } | { message: string }>
+): Promise<void | { error: string }> => {
+    
+    try {
+        const { userId } = req.params
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error in manually veryfing user' })
+    }
+}
