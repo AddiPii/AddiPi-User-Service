@@ -9,6 +9,8 @@ export const usersRouter: Router = express.Router()
 
 usersRouter.get('/', requireAuth, requireAdmin, getAllUsers)
 
+usersRouter.patch('/verify/:userId', requireAuth, requireAdmin, switchVerifyStatus)
+
 usersRouter.get('/:userId', requireAuth, requireAdmin, getUserById)
 
 usersRouter.patch('/:userId/role/:role', requireAuth, requireAdmin, updateUserRoleByParams)
@@ -18,5 +20,3 @@ usersRouter.patch('/:userId/role', requireAuth, requireAdmin, updateUserRole)
 usersRouter.delete('/:userId', requireAuth, requireAdmin, deleteUser)
 
 usersRouter.get('/:userId/jobs', requireAuth, requireAdmin, getUserJobs)
-
-usersRouter.patch('/verify/:userId', requireAuth, requireAdmin, switchVerifyStatus)
