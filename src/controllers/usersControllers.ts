@@ -206,3 +206,30 @@ export const getUserJobs = async (
         res.status(500).json({ error: 'Internal server error' })
     }
 }
+
+export const switchVerifyStatus = async (
+    req: Request<{ userId: string }>,
+    res: Response<{ error: string } | { message: string } | User >
+): Promise<void | Response<{ error: string }>> => {
+    
+    try {
+        const { userId } = req.params
+        const { resource: user } = await usersContainer.item(userId, userId).read<User>()
+        
+        if (!user){
+            return res.status(404).json({ error: 'User not found' })
+        }
+
+        const nextVerifyStatus = !user.isVerified
+
+        user.isVerified = nextVerifyStatus
+        user.updatedAt = getLocalISO()
+
+        await usersContainer.item(userId, userId).replace(user)
+        const { password, ...userWithoutPassword }: User = user
+
+        res.json(userWithoutPassword)
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error in manually veryfing user' })
+    }
+}
