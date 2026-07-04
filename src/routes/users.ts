@@ -1,6 +1,6 @@
 import express from 'express'
 import type { Router } from 'express'
-import { deleteUser, getAllUsers, getUserById, getUserJobs, updateUserRole, updateUserRoleByParams } from '../controllers/usersControllers'
+import { deleteUser, getAllUsers, getUserById, getUserJobs, switchVerifyStatus, updateUserRole, updateUserRoleByParams } from '../controllers/usersControllers'
 import requireAuth from '../middleware/requireAuth'
 import requireAdmin from '../middleware/requireAdmin'
 
@@ -18,3 +18,5 @@ usersRouter.patch('/:userId/role', requireAuth, requireAdmin, updateUserRole)
 usersRouter.delete('/:userId', requireAuth, requireAdmin, deleteUser)
 
 usersRouter.get('/:userId/jobs', requireAuth, requireAdmin, getUserJobs)
+
+usersRouter.patch('/verifyuser/userId', switchVerifyStatus)

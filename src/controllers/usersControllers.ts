@@ -209,8 +209,8 @@ export const getUserJobs = async (
 
 export const switchVerifyStatus = async (
     req: Request<{ userId: string }>,
-    res: Response<{ error: string } | { message: string }>
-): Promise<void | { error: string }> => {
+    res: Response<{ error: string } | { message: string } | User >
+): Promise<void | Response<{ error: string }>> => {
     
     try {
         const { userId } = req.params
