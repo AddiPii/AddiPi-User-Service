@@ -19,4 +19,4 @@ usersRouter.delete('/:userId', requireAuth, requireAdmin, deleteUser)
 
 usersRouter.get('/:userId/jobs', requireAuth, requireAdmin, getUserJobs)
 
-usersRouter.patch('/verifyuser/userId', switchVerifyStatus)
+usersRouter.patch('/verify/userId', switchVerifyStatus)
